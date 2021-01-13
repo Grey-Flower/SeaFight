@@ -19,6 +19,9 @@ public:
 			throw std::invalid_argument("Board is not correct");
 		}
 	}
+
+	enum {WATER = ' ', SHIP = '#' };
+
 private:
 	void createBoard(std::istream& in);
 	bool isBoardCorrect() const;
