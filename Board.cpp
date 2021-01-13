@@ -9,6 +9,7 @@ void Board::createBoard(std::istream& in)
 	while (getline(in, line))
 	{
 		std::vector<std::shared_ptr<Cell>> row;
+		row.push_back(make_shared<Water>(WATER));
 		for (auto c : line)
 		{
 			shared_ptr<Cell> cell;
@@ -22,8 +23,13 @@ void Board::createBoard(std::istream& in)
 			}
 			row.push_back(cell);
 		}
+		row.push_back(make_shared<Water>(WATER));
 		cells.push_back(row);
 	}
+
+	vector<shared_ptr<Cell>> row(cells[0].size(), make_shared<Water>(WATER));
+	cells.insert(cells.begin(), row);
+	cells.push_back(row);
 }
 
 bool Board::isBoardCorrect() const
